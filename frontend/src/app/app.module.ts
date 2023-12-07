@@ -14,6 +14,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MyprofileComponent } from './myprofile/myprofile.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegisterComponent,
     LoginComponent,
     ForgotPasswordComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    MyprofileComponent
   ],
   imports: [
     BrowserModule,

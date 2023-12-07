@@ -6,18 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent {
-  // isProfileModalOpen: boolean = false;
-  close!:boolean
-  showProfileModal() {
-    this.close = !this.close  
-  }
+   postContent: string = '';
+  imageInput: any;
 
-  // closeProfileModal() {
-  //   this.isProfileModalOpen = false;
-  // }
-
-  closeModal(){
-    this.close = false
+    submitPost(form: any) {
+    if (form.valid) {
+      console.log('Form submitted:', form.value);
+    } else {
+      console.log('Form is invalid.');
+    }
   }
 
 }

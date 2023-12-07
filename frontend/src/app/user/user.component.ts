@@ -17,4 +17,9 @@ export class UserComponent {
     }
   }
 
+    onImageChange(event: any) {
+    const selectedFile = event.target.files[0];
+    console.log('Selected image:', selectedFile);
+  }
+
 }

@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { MyprofileComponent } from './myprofile/myprofile.component';
 
 const routes: Routes = [
   {path: "", pathMatch: 'full', redirectTo: ""},
@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: "register", component:RegisterComponent},
   {path: "login", component:LoginComponent},
   {path: "forgot-password", component:ForgotPasswordComponent},
-  {path: "editprofile", component:EditProfileComponent},
+  {path: "profile", component:MyprofileComponent},
 
 
     {path: "**", component:NotFoundComponent}

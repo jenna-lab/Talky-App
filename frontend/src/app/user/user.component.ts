@@ -22,4 +22,42 @@ export class UserComponent {
     console.log('Selected image:', selectedFile);
   }
 
+  
+  viewposts=true
+  viewfollowers=false
+  viewfollowing=false
+  viewProfile = false
+  viewTimeline = true
+ 
+  ViewPosts(){
+    this.viewposts = true
+    this.viewfollowers = false
+    this.viewfollowing = false
+  }
+
+  ViewProfile() {
+   this.viewProfile = true
+    this.viewTimeline = false
+    console.log("dfghjgggjghjg");
+
+  }
+
+  ViewTimeline() {
+    console.log("sadasd");
+    this.viewTimeline = true
+    this.  viewProfile = false
+    
+  }
+
+  ViewFollowers(){
+    this.viewposts = false
+    this.viewfollowers = true
+    this.viewfollowing = false
+  }
+   ViewFollowing(){
+    this.viewposts = false
+    this.viewfollowers=false
+    this.viewfollowing = true
+  }
+
 }

@@ -9,11 +9,11 @@ import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyprofileComponent } from './myprofile/myprofile.component';
+import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +23,8 @@ import { MyprofileComponent } from './myprofile/myprofile.component';
     UserComponent,
     RegisterComponent,
     LoginComponent,
-    ForgotPasswordComponent,
-    MyprofileComponent
+    MyprofileComponent,
+    ForgotpwdComponent
   ],
   imports: [
     BrowserModule,

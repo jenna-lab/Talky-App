@@ -8,12 +8,28 @@ Content-Type: application/json
     "password":"839302018"
 }
 
+# {
+#     "email":"jenifare7@gmail.com",
+#     "userName":"jenz12",
+#     "password":"839302018"
+# }
+
+# {
+#     "email":"jennifer7@gmail.com",
+#     "userName":"jenzz12",
+#     "password":"839302018"
+# }
+
 
 ###
 POST http://localhost:4700/user/login
 Content-Type: application/json
 
+# {
+#     "email":"jenny@gmail.com",
+#     "password":"839302018"
+# }
 {
-    "email":"jenny@gmail.com",
+    "email":"jeny@gmail.com",
     "password":"839302018"
 }

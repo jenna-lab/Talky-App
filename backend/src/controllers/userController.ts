@@ -22,7 +22,7 @@ export const registerUser = async(req:Request, res: Response) =>{
             return res.status(404).json({error: error.details})
         }
 
-        let user_id = v4()
+        let user_id =uid()
 
         const hashedPwd = await bcrypt.hash(password, 5)
          
@@ -99,40 +99,39 @@ export const loginUser = async(req:Request, res: Response) =>{
     }
 }
 
-export const forgotPassword = async (req: Request, res: Response) => {
+// export const forgotPassword = async (req: Request, res: Response) => {
  
-    const { email } = req.body;
-    const new_password = uid();
-    console.log(req.body);
- const pool = await mssql.connect(sqlConfig);
-     const user =    await pool
-        .request()
-      .input("email", mssql.VarChar(50), email)
-        .execute("getUser");
+//     const { email } = req.body;
+//     const new_password = uid();
+//     console.log(req.body);
+//  const pool = await mssql.connect(sqlConfig);
+//      const user =    await pool
+//         .request()
+//       .input("email", mssql.VarChar(50), email)
+//         .execute("getUser");
 
-        const rows = user.rowsAffected[0];
-        if(rows == 0){
-              return res.json({ error: "User Not Found" });
-        }
-        else{
-              const hashedPwd = await bcrypt.hash(new_password, 10);
+//         const rows = user.rowsAffected[0];
+//         if(rows == 0){
+//               return res.json({ error: "User Not Found" });
+//         }
+//         else{
+//               const hashedPwd = await bcrypt.hash(new_password, 10);
               
-              await pool
-                .request()
-                .input("email", mssql.VarChar(50), email)
-                .input("newPassword", mssql.VarChar(255), hashedPwd)
-                .execute("updatePassword");
-         resetPassword(email, new_password);
+//               await pool
+//                 .request()
+//                 .input("email", mssql.VarChar(50), email)
+//                 .input("newPassword", mssql.VarChar(255), hashedPwd)
+//                 .execute("updatePassword");
+//          resetPassword(email, new_password);
          
-          return res.json({ message: "New Password has been sent to your email" });
-        //  }
+//           return res.json({ message: "New Password has been sent to your email" });
           
-          return res.json({ error: "User Not Found" });
-        }
+//           return res.json({ error: "User Not Found" });
+//         }
         
 
 
-};
+// };
 // export const getAllUsers = async(req:Request, res:Response)=>{
 //     try {
 

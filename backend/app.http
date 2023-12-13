@@ -1,0 +1,19 @@
+
+POST http://localhost:4700/user/register
+Content-Type: application/json
+
+{
+    "email":"jenny@gmail.com",
+    "userName":"jenz",
+    "password":"839302018"
+}
+
+
+###
+POST http://localhost:4700/user/login
+Content-Type: application/json
+
+{
+    "email":"jenny@gmail.com",
+    "password":"839302018"
+}

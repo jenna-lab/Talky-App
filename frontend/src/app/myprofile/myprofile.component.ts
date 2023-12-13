@@ -11,8 +11,7 @@ export class MyprofileComponent {
   viewposts=true
   viewfollowers=false
   viewfollowing=false
-    // viewProfile = false
-    // viewTimeline = false
+    
 
  
   ViewPosts(){

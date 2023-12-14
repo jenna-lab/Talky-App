@@ -21,6 +21,7 @@ export const registerUser = async(req:Request, res: Response) =>{
         if(error){
             return res.status(404).json({error: error.details})
         }
+        
 
         let user_id =uid()
 
@@ -41,15 +42,26 @@ export const registerUser = async(req:Request, res: Response) =>{
             })
         }     
     } catch (error) {  
+        console.log((error as Error).message)
+        const message = (error as Error).message
+        if(message.includes('@')){
         return res.json({
-            error: error
+            error: "Email's already taken"
         })
     }
+    else{
+        return res.json({
+            error: "Username's already taken"
+        })
+    }
+
+}
 }
 
 export const loginUser = async(req:Request, res: Response) =>{
     try {  
         const {email, password} = req.body
+        console.log(email, password)
 
         const {error} = loginUserSchema.validate(req.body)
 
@@ -132,42 +144,27 @@ export const loginUser = async(req:Request, res: Response) =>{
 
 
 // };
-// export const getAllUsers = async(req:Request, res:Response)=>{
-//     try {
 
-//         const pool = await mssql.connect(sqlConfig)
 
-//         let employees = (await pool.request().execute('fetchAllEmployees')).recordset
+export const getOneUser = async(req:Request, res:Response)=>{
+    try {
 
-//         return res.status(200).json({
-//             employees: employees
-//         })
+        let id = req.params.id 
+
+        const pool = await mssql.connect(sqlConfig)
+
+        let user = (await pool.request().input('user_id',id).execute('getOneUser')).recordset
+
+        return res.status(200).json({
+            user: user
+        })
         
-//     } catch (error) {
-//         return res.json({
-//             error: error
-//         })
-//     }
-// }
-// export const getOneUsers = async(req:Request, res:Response)=>{
-//     try {
-
-//         let id = req.params.id 
-
-//         const pool = await mssql.connect(sqlConfig)
-
-//         let employee = (await pool.request().input('employee_id',id).execute('fetchOneEmployee')).recordset
-
-//         return res.status(200).json({
-//             employee: employee
-//         })
-        
-//     } catch (error) {
-//         return res.json({
-//             error: error
-//         })
-//     }
-// }
+    } catch (error) {
+        return res.json({
+            error: error
+        })
+    }
+}
 
 // export const userStatus = async (req: Request, res:Response)=>{
 //     try {

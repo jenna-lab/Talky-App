@@ -2,17 +2,17 @@
 POST http://localhost:4700/user/register
 Content-Type: application/json
 
-{
-    "email":"jenny@gmail.com",
-    "userName":"jenz",
-    "password":"839302018"
-}
-
 # {
-#     "email":"jenifare7@gmail.com",
-#     "userName":"jenz12",
+#     "email":"tryuiytuuil@gmail.com",
+#     "userName":"jenz",
 #     "password":"839302018"
 # }
+
+{
+    "email":"jenifare7@gmail.com",
+    "userName":"jenz12",
+    "password":"839302018"
+}
 
 # {
 #     "email":"jennifer7@gmail.com",
@@ -25,11 +25,85 @@ Content-Type: application/json
 POST http://localhost:4700/user/login
 Content-Type: application/json
 
-# {
-#     "email":"jenny@gmail.com",
-#     "password":"839302018"
-# }
 {
-    "email":"jeny@gmail.com",
+    "email":"jenifare7@gmail.com",
     "password":"839302018"
+}
+
+###
+GET http://localhost:4700/user/8a0e9f90-4bdc-4e47-bde1-71f31056ebe0
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOTRmNjc5ODItYWUxNi00ZDdlLTgyY2UtMTNiNTgyOGNhYTQ2IiwidXNlck5hbWUiOiJqZW56MTIiLCJlbWFpbCI6Implbm55N0BnbWFpbC5jb20iLCJpc0RlbGV0ZWQiOmZhbHNlLCJpYXQiOjE3MDI0NjUwMTMsImV4cCI6MTcwMjU1MTQxM30.AT221f4FEpmLdVlGmEbEXw4WAysj4J4lNnC_3ecpwFQ
+
+### 
+GET http://localhost:4700/user/check_user_details
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOTRmNjc5ODItYWUxNi00ZDdlLTgyY2UtMTNiNTgyOGNhYTQ2IiwidXNlck5hbWUiOiJqZW56MTIiLCJlbWFpbCI6Implbm55N0BnbWFpbC5jb20iLCJpc0RlbGV0ZWQiOmZhbHNlLCJpYXQiOjE3MDI0NjUwMTMsImV4cCI6MTcwMjU1MTQxM30.AT221f4FEpmLdVlGmEbEXw4WAysj4J4lNnC_3ecpwFQ
+
+
+### 
+POST http://localhost:4700/post/createpost
+Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5MWJiOTYtNmMxMC00ZDMwLWE1MjctYjk0NWIwMzQ3ZGYyIiwidXNlck5hbWUiOiJqZW56MTIiLCJlbWFpbCI6ImplbmlmYXJlN0BnbWFpbC5jb20iLCJpc0RlbGV0ZWQiOmZhbHNlLCJpYXQiOjE3MDI1MzcxNTcsImV4cCI6MTcwMjYyMzU1N30.ptMdqITMHj1H3a05p2PRI8iYS5hQFLLGWdz8fSBz7Yk
+
+{
+    "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5",
+    "imageInput":"",
+    "postContent": "having fun for real"
+
+}
+
+
+###
+POST  http://localhost:4700/post/viewSinglePost/c4e8927b-1a29-4f19-adfc-af56c58b14c7
+Content-Type: application/json
+
+{
+    "user_id": "8a0e9f90-4bdc-4e47-bde1-71f31056ebe0"
+}
+
+
+###
+#edit a post
+PUT http://localhost:4500/posts/editpost
+Content-Type: application/json
+
+{
+    "user_id": "39cd9427-42c8-44e1-b436-20612b21d144",
+    "post_id": "849aa15d-296f-48d4-af96-86c143058f54",
+    "body": "edit post now works, dont touch it",
+    "tagged": ""
+}
+
+
+###
+#delete a post
+PUT http://localhost:4500/posts/deletepost/5c7f8faa-a07e-44da-9094-ea075a391ac9
+Content-Type: application/json
+
+{
+    "user_id": "be6feb2f-4195-40b3-8d65-39403d5f37e4"
+}
+
+
+###
+#like post
+POST http://localhost:4500/posts/likepost
+Content-Type: application/json
+
+{
+    "user_id": "0edd9c13-d738-42f1-a267-0fedd9a9a8ac",
+    "post_id": "c21376b4-56b9-4df1-9428-17eeaf2ac1b2"
+}
+
+
+
+###
+#unlike post
+POST http://localhost:4500/posts/unlikepost
+Content-Type: application/json
+
+{
+    "user_id": "0edd9c13-d738-42f1-a267-0fedd9a9a8ac",
+    "post_id": "c21376b4-56b9-4df1-9428-17eeaf2ac1b2"
 }

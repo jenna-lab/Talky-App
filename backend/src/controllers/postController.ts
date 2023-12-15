@@ -321,16 +321,13 @@ export const fetchUserPosts = async (req: Request, res: Response) => {
 };
 
 
-
 export const addComment = async (req: Request, res: Response) => {
   try {
-    console.log(req.body);
     
     let { user_id, post_id, commentContent } = req.body;
     
     // Assuming you want to set the comment time as the current server time
     const commentTime = new Date();
-
     const pool = await mssql.connect(sqlConfig);
 
     if (pool.connected) {
@@ -341,14 +338,18 @@ export const addComment = async (req: Request, res: Response) => {
         .input('commentTime', mssql.DateTime, commentTime)
         .execute('addComment');
 
-      if (result.rowsAffected[0] === 0) {
+        console.log(result.rowsAffected[0]);
+        
+
+      if (result.rowsAffected[0] == 0) {
         return res.status(404).json({
           message: 'Comment not added',
         });
       } else {
         return res.status(200).json({
           message: 'Comment added successfully',
-          commentId: result.recordset[0].comment_id,
+          comment_id: result.rowsAffected[0],
+
         });
       }
     }
@@ -357,3 +358,80 @@ export const addComment = async (req: Request, res: Response) => {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+export const editComment = async (req: Request, res: Response) => {
+  try {
+    let {comment_id} = req.params
+
+    let { user_id, commentContent,post_id } = req.body;
+    
+    // Assuming you want to set the comment time as the current server time
+    const commentTime = new Date();
+    const pool = await mssql.connect(sqlConfig);
+
+    if (pool.connected) {
+      const result = await pool.request()
+        .input('user_id', mssql.VarChar, user_id)
+        .input('post_id', mssql.VarChar, post_id)
+        .input('comment_id', mssql.VarChar, comment_id)
+        .input('commentTime', mssql.Date, commentTime)
+        .input('commentContent', mssql.VarChar, commentContent)
+
+        .execute('editComment');
+
+        console.log(result.rowsAffected[0]);
+        
+
+      if (result.rowsAffected[0] == 0) {
+        return res.status(404).json({
+          message: 'Comment not edited',
+        });
+      } else {
+        return res.status(200).json({
+          message: 'Comment edited successfully',
+          comment_id: result.rowsAffected[0],
+
+        });
+      }
+    }
+  } catch (error) {
+    console.error((error as Error).message);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+export const deleteComment = async (req: Request, res: Response) => {
+  try {
+    let {comment_id} = req.params
+
+    let { user_id, commentContent,post_id } = req.body;
+    
+    // Assuming you want to set the comment time as the current server time
+    const commentTime = new Date();
+    const pool = await mssql.connect(sqlConfig);
+
+    if (pool.connected) {
+      const result = await pool.request()
+        .input('comment_id', mssql.VarChar, comment_id)
+        .execute('deleteComment');
+
+        console.log(result.rowsAffected[0]);
+        
+
+      if (result.rowsAffected[0] == 0) {
+        return res.status(404).json({
+          message: 'Comment not deleted',
+        });
+      } else {
+        return res.status(200).json({
+          message: 'Comment deleted successfully',
+
+        });
+      }
+    }
+  } catch (error) {
+    console.error((error as Error).message);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+

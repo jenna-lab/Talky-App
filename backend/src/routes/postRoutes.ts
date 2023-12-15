@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createPost,viewSinglePost,editPost,deletePost,likeOrUnlikePost,fetchUserPosts,getSingleUserPosts,viewAllPosts,addComment } from "../controllers/postController";
+import { createPost,viewSinglePost,editPost,deletePost,likeOrUnlikePost,fetchUserPosts,getSingleUserPosts,viewAllPosts,addComment, editComment } from "../controllers/postController";
 import { verifyToken } from "../middleware/verifyToken";
 import { add } from "lodash";
 
@@ -14,6 +14,7 @@ post_router.get('/fetchuserposts/:user_id',verifyToken,fetchUserPosts);
 post_router.get('/getSingleUserPosts/:id',getSingleUserPosts);
 post_router.get('/viewallposts',viewAllPosts);
 post_router.post('/addComment',verifyToken,addComment);
+post_router.post('/editComment/"comment_id',verifyToken,editComment);
 
 
 // post_router.post('/likepost',verifyToken,likePost);

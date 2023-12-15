@@ -33,8 +33,7 @@ Content-Type: application/json
 ###
 GET http://localhost:4700/user/8a0e9f90-4bdc-4e47-bde1-71f31056ebe0
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOTRmNjc5ODItYWUxNi00ZDdlLTgyY2UtMTNiNTgyOGNhYTQ2IiwidXNlck5hbWUiOiJqZW56MTIiLCJlbWFpbCI6Implbm55N0BnbWFpbC5jb20iLCJpc0RlbGV0ZWQiOmZhbHNlLCJpYXQiOjE3MDI0NjUwMTMsImV4cCI6MTcwMjU1MTQxM30.AT221f4FEpmLdVlGmEbEXw4WAysj4J4lNnC_3ecpwFQ
-
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5MWJiOTYtNmMxMC00ZDMwLWE1MjctYjk0NWIwMzQ3ZGYyIiwidXNlck5hbWUiOiJqZW56MTIiLCJlbWFpbCI6ImplbmlmYXJlN0BnbWFpbC5jb20iLCJpc0RlbGV0ZWQiOmZhbHNlLCJpYXQiOjE3MDI2MDgzNzgsImV4cCI6MTcwMjY5NDc3OH0.RbWhbdIallMR0Ee8dVG-29rrCs9U_5QPOIMkOvUCS80
 ### 
 GET http://localhost:4700/user/check_user_details
 Content-Type: application/json
@@ -55,45 +54,48 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5MWJiOTYtNmMxMC00Z
 
 
 ###
-POST  http://localhost:4700/post/viewSinglePost/c4e8927b-1a29-4f19-adfc-af56c58b14c7
+POST  http://localhost:4700/post/viewSinglePost/48cca0aa-5fd8-4c79-b24d-42c9f8b259f5
 Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5MWJiOTYtNmMxMC00ZDMwLWE1MjctYjk0NWIwMzQ3ZGYyIiwidXNlck5hbWUiOiJqZW56MTIiLCJlbWFpbCI6ImplbmlmYXJlN0BnbWFpbC5jb20iLCJpc0RlbGV0ZWQiOmZhbHNlLCJpYXQiOjE3MDI1Nzg3MzAsImV4cCI6MTcwMjY2NTEzMH0.hM2EFaVs6q6vAgfqRnb2e5PCJzxkaWKChyvozMRgzXI
 
 {
-    "user_id": "8a0e9f90-4bdc-4e47-bde1-71f31056ebe0"
+    "user_id": "5e91bb96-6c10-4d30-a527-b945b0347df2"
 }
 
 
 ###
 #edit a post
-PUT http://localhost:4500/posts/editpost
+PUT http://localhost:4700/post/editpost
 Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5MWJiOTYtNmMxMC00ZDMwLWE1MjctYjk0NWIwMzQ3ZGYyIiwidXNlck5hbWUiOiJqZW56MTIiLCJlbWFpbCI6ImplbmlmYXJlN0BnbWFpbC5jb20iLCJpc0RlbGV0ZWQiOmZhbHNlLCJpYXQiOjE3MDI2MDk4NjUsImV4cCI6MTcwMjY5NjI2NX0.1oGiRWRHwTYQeRIhmNLnPo8Zu3eFKsTIGR4PGOJ6eh0
 
 {
-    "user_id": "39cd9427-42c8-44e1-b436-20612b21d144",
-    "post_id": "849aa15d-296f-48d4-af96-86c143058f54",
-    "body": "edit post now works, dont touch it",
-    "tagged": ""
+    "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5",
+    "post_id": "d79d5187-c3d0-4b49-aef2-0c8a16c1186f",
+    "newPostContent": "having fun for real",
+    "newImageInput":""
 }
 
 
 ###
-#delete a post
-PUT http://localhost:4500/posts/deletepost/5c7f8faa-a07e-44da-9094-ea075a391ac9
+PUT http://localhost:4700/post/deletepost/d79d5187-c3d0-4b49-aef2-0c8a16c1186f
 Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5MWJiOTYtNmMxMC00ZDMwLWE1MjctYjk0NWIwMzQ3ZGYyIiwidXNlck5hbWUiOiJqZW56MTIiLCJlbWFpbCI6ImplbmlmYXJlN0BnbWFpbC5jb20iLCJpc0RlbGV0ZWQiOmZhbHNlLCJpYXQiOjE3MDI2MDk4NjUsImV4cCI6MTcwMjY5NjI2NX0.1oGiRWRHwTYQeRIhmNLnPo8Zu3eFKsTIGR4PGOJ6eh0
 
 {
-    "user_id": "be6feb2f-4195-40b3-8d65-39403d5f37e4"
+    "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5"
 }
 
 
 ###
 #like post
-POST http://localhost:4500/posts/likepost
+POST http://localhost:4700/post/likeorunlikepost
 Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5MWJiOTYtNmMxMC00ZDMwLWE1MjctYjk0NWIwMzQ3ZGYyIiwidXNlck5hbWUiOiJqZW56MTIiLCJlbWFpbCI6ImplbmlmYXJlN0BnbWFpbC5jb20iLCJpc0RlbGV0ZWQiOmZhbHNlLCJpYXQiOjE3MDI2MDk4NjUsImV4cCI6MTcwMjY5NjI2NX0.1oGiRWRHwTYQeRIhmNLnPo8Zu3eFKsTIGR4PGOJ6eh0
 
 {
-    "user_id": "0edd9c13-d738-42f1-a267-0fedd9a9a8ac",
-    "post_id": "c21376b4-56b9-4df1-9428-17eeaf2ac1b2"
+    "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5",
+    "post_id": "d79d5187-c3d0-4b49-aef2-0c8a16c1186f"
 }
 
 
@@ -107,3 +109,17 @@ Content-Type: application/json
     "user_id": "0edd9c13-d738-42f1-a267-0fedd9a9a8ac",
     "post_id": "c21376b4-56b9-4df1-9428-17eeaf2ac1b2"
 }
+
+###
+GET http://localhost:4700/post/fetchallposts
+Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5MWJiOTYtNmMxMC00ZDMwLWE1MjctYjk0NWIwMzQ3ZGYyIiwidXNlck5hbWUiOiJqZW56MTIiLCJlbWFpbCI6ImplbmlmYXJlN0BnbWFpbC5jb20iLCJpc0RlbGV0ZWQiOmZhbHNlLCJpYXQiOjE3MDI2MDk4NjUsImV4cCI6MTcwMjY5NjI2NX0.1oGiRWRHwTYQeRIhmNLnPo8Zu3eFKsTIGR4PGOJ6eh0
+
+{
+    "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5"
+}
+
+
+
+
+

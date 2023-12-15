@@ -180,7 +180,7 @@ export const deletePost = async (req: Request, res: Response) => {
 
 export const fetchAllPosts = async (req: Request, res: Response) => {
   try {
-        // let { user_id } = req.body;
+        let { user_id } = req.body;
 
     const pool = await mssql.connect(sqlConfig);
 
@@ -226,7 +226,7 @@ export const likeOrUnlikePost = async (req: Request, res: Response) => {
           });
         } else {
           return res.status(200).json({
-            message: 'Post unliked successfully',
+            message: 'Post unliked ',
             postId: post_id,
             action: 'unlike',
           });
@@ -244,7 +244,7 @@ export const likeOrUnlikePost = async (req: Request, res: Response) => {
           });
         } else {
           return res.status(200).json({
-            message: 'Post liked successfully',
+            message: 'Post liked',
             postId: post_id,
             action: 'like',
           });
@@ -272,6 +272,85 @@ export const getSingleUserPosts = async (req: Request, res: Response) => {
         message: 'Successfully retrieved user posts',
         posts: result.recordset,
       });
+    }
+  } catch (error) {
+    console.error((error as Error).message);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+export const viewAllPosts = async (req: Request, res: Response) => {
+  try {
+    const pool = await mssql.connect(sqlConfig);
+
+    if (pool.connected) {
+      const result = await pool.request().execute('viewAllPosts');
+
+      return res.status(200).json({
+        message: 'Successfully retrieved all posts',
+        posts: result.recordset,
+      });
+    }
+  } catch (error) {
+    console.error((error as Error).message);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+export const fetchUserPosts = async (req: Request, res: Response) => {
+  try {
+    let { user_id } = req.params;
+
+    const pool = await mssql.connect(sqlConfig);
+
+    if (pool.connected) {
+      const result = await pool.request()
+        .input('user_id', mssql.VarChar, user_id)
+        .execute('fetchUserPosts');
+        console.log(result);
+        
+      return res.status(200).json({
+        message: 'Successfully retrieved user posts',
+        posts: result.recordset,
+      });
+    }
+  } catch (error) {
+    console.error((error as Error).message);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+
+export const addComment = async (req: Request, res: Response) => {
+  try {
+    console.log(req.body);
+    
+    let { user_id, post_id, commentContent } = req.body;
+    
+    // Assuming you want to set the comment time as the current server time
+    const commentTime = new Date();
+
+    const pool = await mssql.connect(sqlConfig);
+
+    if (pool.connected) {
+      const result = await pool.request()
+        .input('user_id', mssql.VarChar, user_id)
+        .input('post_id', mssql.VarChar, post_id)
+        .input('commentContent', mssql.VarChar, commentContent)
+        .input('commentTime', mssql.DateTime, commentTime)
+        .execute('addComment');
+
+      if (result.rowsAffected[0] === 0) {
+        return res.status(404).json({
+          message: 'Comment not added',
+        });
+      } else {
+        return res.status(200).json({
+          message: 'Comment added successfully',
+          commentId: result.recordset[0].comment_id,
+        });
+      }
     }
   } catch (error) {
     console.error((error as Error).message);

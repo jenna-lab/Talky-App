@@ -166,6 +166,24 @@ export const getOneUser = async(req:Request, res:Response)=>{
     }
 }
 
+export const viewAllUsers = async (req: Request, res: Response) => {
+  try {
+    const pool = await mssql.connect(sqlConfig);
+
+    if (pool.connected) {
+      const result = await pool.request().execute('viewAllUsers');
+
+      return res.status(200).json({
+        message: 'Successfully retrieved all users',
+        users: result.recordset,
+      });
+    }
+  } catch (error) {
+    console.error((error as Error).message);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
 // export const userStatus = async (req: Request, res:Response)=>{
 //     try {
         
@@ -200,3 +218,33 @@ export const checkUserDetails = async (req:ExtendedUser, res:Response)=>{
     }
     
 }
+
+export const toggleSoftDeleteUser = async (req: Request, res: Response) => {
+  try {
+    let { user_id } = req.params;
+    let { isDeleted } = req.body;
+
+    const pool = await mssql.connect(sqlConfig);
+
+    if (pool.connected) {
+      const result = await pool.request()
+        .input('user_id', mssql.VarChar, user_id)
+        .input('isDeleted', mssql.Bit, isDeleted)
+        .execute('toggleSoftDeleteUser');
+
+      if (result.rowsAffected[0] === 0) {
+        return res.status(404).json({
+          message: 'User not found or soft delete status not updated',
+        });
+      } else {
+        return res.status(200).json({
+          message: `Soft delete status ${isDeleted ? 'enabled' : 'disabled'} successfully`,
+          userId: user_id,
+        });
+      }
+    }
+  } catch (error) {
+    console.error((error as Error).message);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};

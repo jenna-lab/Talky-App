@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { createPost,viewSinglePost,editPost,deletePost,likeOrUnlikePost,fetchAllPosts,getSingleUserPosts } from "../controllers/postController";
+import { createPost,viewSinglePost,editPost,deletePost,likeOrUnlikePost,fetchUserPosts,getSingleUserPosts,viewAllPosts,addComment } from "../controllers/postController";
 import { verifyToken } from "../middleware/verifyToken";
+import { add } from "lodash";
 
 const post_router = Router()
 
@@ -9,8 +10,12 @@ post_router.put('/editpost',verifyToken,editPost);
 post_router.post('/viewSinglePost/:post_id',verifyToken,viewSinglePost);
 post_router.delete('/deletepost/:post_id',verifyToken,deletePost);
 post_router.post('/likeorunlikepost',verifyToken,likeOrUnlikePost);
-post_router.post('/fetchallposts/:id',verifyToken,fetchAllPosts);
-post_router.post('/getSingleUserPosts/:id',getSingleUserPosts);
+post_router.get('/fetchuserposts/:user_id',verifyToken,fetchUserPosts);
+post_router.get('/getSingleUserPosts/:id',getSingleUserPosts);
+post_router.get('/viewallposts',viewAllPosts);
+post_router.post('/addComment',verifyToken,addComment);
+
+
 // post_router.post('/likepost',verifyToken,likePost);
 // post_router.post('/unlikepost',verifyToken,unlikePost);
 // post_router.get('/checklikedpost',verifyToken,checkLikedPost);

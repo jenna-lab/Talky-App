@@ -58,15 +58,21 @@ export const createPost = async (req: Request, res: Response) => {
 
 export const viewSinglePost = async (req: Request, res: Response) => {
   try {
-    let { user_id,post_id } = req.params; 
+    console.log(req.params);
+    
+    let {post_id } = req.params; 
+    let {user_id} = req.body
+
     const pool = await mssql.connect(sqlConfig);
 
     if (pool.connected) {
       const result = await pool.request()
+        .input('user_id', mssql.VarChar, user_id)      
         .input('post_id', mssql.VarChar, post_id)
-        .input('user_id', mssql.VarChar, user_id)
         .execute('viewSinglePost');
 
+        console.log(result);
+        
       if (result.recordset.length === 0) {
         return res.status(404).json({
           message: 'Post not found',
@@ -129,23 +135,38 @@ export const editPost = async (req: Request, res: Response) => {
 
 export const deletePost = async (req: Request, res: Response) => {
   try {
-    let { user_id, post_id } = req.body;
+    let { user_id } = req.body;
+    let { post_id } = req.params;
 
     const pool = await mssql.connect(sqlConfig);
 
     if (pool.connected) {
-      const result = await pool.request()
+      // Delete related likes from PostLikes table
+      const deleteLikesResult = await pool.request()
+        .input('post_id', mssql.VarChar, post_id)
+        .execute('deletePostLikes');
+
+      // Check if likes are successfully deleted before proceeding with post deletion
+      if (deleteLikesResult.rowsAffected[0] === 0) {
+        return res.status(404).json({
+          message: 'Likes not found or not deleted',
+        });
+      }
+
+      // Delete the actual post
+      const deletePostResult = await pool.request()
         .input('user_id', mssql.VarChar, user_id)
         .input('post_id', mssql.VarChar, post_id)
         .execute('deletePost');
 
-      if (result.rowsAffected[0] === 0) {
+      // Check if the post is successfully deleted
+      if (deletePostResult.rowsAffected[0] === 0) {
         return res.status(404).json({
           message: 'Post not found or not deleted',
         });
       } else {
         return res.status(200).json({
-          message: 'Post deleted successfully',
+          message: 'Post and related likes deleted successfully',
           postId: post_id,
         });
       }
@@ -155,6 +176,7 @@ export const deletePost = async (req: Request, res: Response) => {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
 
 export const fetchAllPosts = async (req: Request, res: Response) => {
   try {
@@ -187,6 +209,9 @@ export const likeOrUnlikePost = async (req: Request, res: Response) => {
         .input('user_id', mssql.VarChar, user_id)
         .input('post_id', mssql.VarChar, post_id)
         .execute('checkLikedPost');
+
+        console.log(checkLikedResult);
+        
 
       if (checkLikedResult.recordset.length > 0) {
         // Post is already liked, so unlike it
@@ -225,6 +250,28 @@ export const likeOrUnlikePost = async (req: Request, res: Response) => {
           });
         }
       }
+    }
+  } catch (error) {
+    console.error((error as Error).message);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+export const getSingleUserPosts = async (req: Request, res: Response) => {
+  try {
+    let { user_id } = req.params; // Adjust this according to your route setup
+
+    const pool = await mssql.connect(sqlConfig);
+
+    if (pool.connected) {
+      const result = await pool.request()
+        .input('user_id', mssql.VarChar, user_id)
+        .execute('getUserPosts');
+
+      return res.status(200).json({
+        message: 'Successfully retrieved user posts',
+        posts: result.recordset,
+      });
     }
   } catch (error) {
     console.error((error as Error).message);

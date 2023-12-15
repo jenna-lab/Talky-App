@@ -43,12 +43,12 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOTRmNjc5ODItYWUxNi00
 ### 
 POST http://localhost:4700/post/createpost
 Content-Type: application/json
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5MWJiOTYtNmMxMC00ZDMwLWE1MjctYjk0NWIwMzQ3ZGYyIiwidXNlck5hbWUiOiJqZW56MTIiLCJlbWFpbCI6ImplbmlmYXJlN0BnbWFpbC5jb20iLCJpc0RlbGV0ZWQiOmZhbHNlLCJpYXQiOjE3MDI1MzcxNTcsImV4cCI6MTcwMjYyMzU1N30.ptMdqITMHj1H3a05p2PRI8iYS5hQFLLGWdz8fSBz7Yk
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5MWJiOTYtNmMxMC00ZDMwLWE1MjctYjk0NWIwMzQ3ZGYyIiwidXNlck5hbWUiOiJqZW56MTIiLCJlbWFpbCI6ImplbmlmYXJlN0BnbWFpbC5jb20iLCJpc0RlbGV0ZWQiOmZhbHNlLCJpYXQiOjE3MDI2MjQxMTEsImV4cCI6MTcwMjcxMDUxMX0.FWwKl0PweDvjm_jces_8Ho7CA1Lqsd41OFboGcL9KOc
 
 {
     "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5",
     "imageInput":"",
-    "postContent": "having fun for real"
+    "postContent": "Jenna told Robin he is a simp.He will never forget that.Hio ni kumuita kafukusw"
 
 }
 
@@ -59,7 +59,7 @@ Content-Type: application/json
 token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5MWJiOTYtNmMxMC00ZDMwLWE1MjctYjk0NWIwMzQ3ZGYyIiwidXNlck5hbWUiOiJqZW56MTIiLCJlbWFpbCI6ImplbmlmYXJlN0BnbWFpbC5jb20iLCJpc0RlbGV0ZWQiOmZhbHNlLCJpYXQiOjE3MDI1Nzg3MzAsImV4cCI6MTcwMjY2NTEzMH0.hM2EFaVs6q6vAgfqRnb2e5PCJzxkaWKChyvozMRgzXI
 
 {
-    "user_id": "5e91bb96-6c10-4d30-a527-b945b0347df2"
+    "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5"
 }
 
 
@@ -78,7 +78,7 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5MWJiOTYtNmMxMC00Z
 
 
 ###
-PUT http://localhost:4700/post/deletepost/d79d5187-c3d0-4b49-aef2-0c8a16c1186f
+DELETE http://localhost:4700/post/deletepost/1b35b780-389b-40a3-b228-f0953ecca4f3
 Content-Type: application/json
 token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5MWJiOTYtNmMxMC00ZDMwLWE1MjctYjk0NWIwMzQ3ZGYyIiwidXNlck5hbWUiOiJqZW56MTIiLCJlbWFpbCI6ImplbmlmYXJlN0BnbWFpbC5jb20iLCJpc0RlbGV0ZWQiOmZhbHNlLCJpYXQiOjE3MDI2MDk4NjUsImV4cCI6MTcwMjY5NjI2NX0.1oGiRWRHwTYQeRIhmNLnPo8Zu3eFKsTIGR4PGOJ6eh0
 
@@ -95,7 +95,7 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5MWJiOTYtNmMxMC00Z
 
 {
     "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5",
-    "post_id": "d79d5187-c3d0-4b49-aef2-0c8a16c1186f"
+    "post_id": "80438afc-dafd-438d-8e0e-edadae02ac24"
 }
 
 

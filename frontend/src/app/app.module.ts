@@ -14,6 +14,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
+import { SearchComponent } from './search/search.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +28,8 @@ import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
     RegisterComponent,
     LoginComponent,
     MyprofileComponent,
-    ForgotpwdComponent
+    ForgotpwdComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,10 @@ import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
     ReactiveFormsModule,
     MatDialogModule,
     MatIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+      NgxDropzoneModule,
+      HttpClientModule
+
     
   ],
   providers: [],

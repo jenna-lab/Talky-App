@@ -6,15 +6,17 @@ import { Injectable } from '@angular/core';
 export class ForgotpwdService {
 
   constructor() {}
+
   async forgotpwd(email: string) {
     const response = await fetch(`http://localhost:4700/user/forgotpwd`, {
+      
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(email),
     });
-    console.log(response);
+    console.log(response + "i reached here");
 
     return response.json();
   }  

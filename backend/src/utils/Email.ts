@@ -14,7 +14,7 @@ let configurations = {
   requireTLS: true,
   auth: {
     user: "jensam209@gmail.com",
-    pass: "qrct volw nitt ccpo",
+    pass: "gpml ioza nqqa bpfa",
   },
 };
 

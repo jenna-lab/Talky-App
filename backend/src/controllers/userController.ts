@@ -9,6 +9,7 @@ import { ExtendedUser } from '../middleware/verifyToken'
 import { loginUserSchema, registerUserSchema } from '../validators/validators'
 import { isEmpty } from 'lodash'
 import dbHelper from '../dbhelpers/dbhelper'
+import { resetPassword } from '../utils/sendResetPwd';
 
  
 export const registerUser = async(req:Request, res: Response) =>{
@@ -111,40 +112,8 @@ export const loginUser = async(req:Request, res: Response) =>{
     }
 }
 
-// export const forgotPassword = async (req: Request, res: Response) => {
+
  
-//     const { email } = req.body;
-//     const new_password = uid();
-//     console.log(req.body);
-//  const pool = await mssql.connect(sqlConfig);
-//      const user =    await pool
-//         .request()
-//       .input("email", mssql.VarChar(50), email)
-//         .execute("getUser");
-
-//         const rows = user.rowsAffected[0];
-//         if(rows == 0){
-//               return res.json({ error: "User Not Found" });
-//         }
-//         else{
-//               const hashedPwd = await bcrypt.hash(new_password, 10);
-              
-//               await pool
-//                 .request()
-//                 .input("email", mssql.VarChar(50), email)
-//                 .input("newPassword", mssql.VarChar(255), hashedPwd)
-//                 .execute("updatePassword");
-//          resetPassword(email, new_password);
-         
-//           return res.json({ message: "New Password has been sent to your email" });
-          
-//           return res.json({ error: "User Not Found" });
-//         }
-        
-
-
-// };
-
 
 export const getOneUser = async(req:Request, res:Response)=>{
     try {
@@ -184,29 +153,7 @@ export const viewAllUsers = async (req: Request, res: Response) => {
   }
 };
 
-// export const userStatus = async (req: Request, res:Response)=>{
-//     try {
-        
-//         let {employee_id} = req.params
-//         let {isDeleted} = req.body
 
-//         const pool = await mssql.connect(sqlConfig)
-
-//         const result = await pool.request()
-//         .input("employee_id", employee_id) 
-//         .input("isDeleted", isDeleted)
-//         .execute("deleteEmployee")
-        
-//         console.log(result);
-
-//         return res.json({message: result})
-
-//     } catch (error) {
-//         return res.json({
-//             error: error
-//         })
-//     }
-// }
 
 export const checkUserDetails = async (req:ExtendedUser, res:Response)=>{
     
@@ -247,4 +194,42 @@ export const toggleSoftDeleteUser = async (req: Request, res: Response) => {
     console.error((error as Error).message);
     return res.status(500).json({ error: 'Internal Server Error' });
   }
+};
+
+
+export const forgotPassword = async (req: Request, res: Response) => {
+ 
+    const { email } = req.body;
+    const new_password = uid();
+    console.log(req.body);
+ const pool = await mssql.connect(sqlConfig);
+     const user =    await pool
+        .request()
+      .input("email", mssql.VarChar(50), email)
+        .execute("getUser");
+
+        const rows = user.rowsAffected[0];
+        if(rows == 0){
+              return res.json({ error: "User Not Found" });
+        }
+        else{
+              const hashedPwd = await bcrypt.hash(new_password, 10);
+              
+              await pool
+                .request()
+                .input("email", mssql.VarChar(50), email)
+                .input("newPassword", mssql.VarChar(255), hashedPwd)
+                .execute("updatePassword");
+         resetPassword(email, new_password);
+
+         console.log(new_password);
+         
+         
+          return res.json({ message: "New Password has been sent to your email" });
+          
+          return res.json({ error: "User Not Found" });
+        }
+        
+
+
 };

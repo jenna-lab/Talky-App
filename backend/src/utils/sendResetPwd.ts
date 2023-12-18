@@ -2,7 +2,7 @@ import ejs from "ejs";
 import sendMail from "./Email";
 
 export const resetPassword = async (email: string, new_password: string) => {
-  console.log(process.env.EMAIL);
+  console.log(process.env);
 
   ejs.renderFile(
     "templates/resetPwd.ejs",
@@ -17,7 +17,7 @@ export const resetPassword = async (email: string, new_password: string) => {
           from: "jensam209@gmail.com",
           to: email,
           subject: "Reset password",
-          // html: data,
+          html: data,
         };
 
         try {

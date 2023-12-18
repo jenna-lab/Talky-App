@@ -54,7 +54,7 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00
 ### 
 GET http://localhost:4700/user/check_user_details
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00MzU4LTllZjUtYjU1NWIyMjEzNjA4IiwidXNlck5hbWUiOiJqZW56ejEyIiwiZW1haWwiOiJqZW5uaWZlcjdAZ21haWwuY29tIiwiaXNEZWxldGVkIjpmYWxzZSwiaWF0IjoxNzAyNjM0NjA4LCJleHAiOjE3MDI3MjEwMDh9.i6xU2qItgfYPNTy6sGYWJbN8dB40-SgD2qVXQfJIyFo
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00MzU4LTllZjUtYjU1NWIyMjEzNjA4IiwidXNlck5hbWUiOiJqZW56ejEyIiwiZW1haWwiOiJqZW5uaWZlcjdAZ21haWwuY29tIiwiaXNEZWxldGVkIjpmYWxzZSwiaWF0IjoxNzAyODg2MTkwLCJleHAiOjE3MDI5NzI1OTB9.VhurK53ynd5ReAdCAvCsnBeLmIzPgBom_nuDPIJaNmo
 
 ###
 //softdeleteuser
@@ -160,7 +160,7 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00
 
 ###
 //get all comments
-GET http://localhost:4700/post/viewallcomments/7e9473c0-f445-4f3c-b4bc-80c31d1b31d5
+GET http://localhost:4700/post/getallcomments/7e9473c0-f445-4f3c-b4bc-80c31d1b31d5
 Content-Type: application/json
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00MzU4LTllZjUtYjU1NWIyMjEzNjA4IiwidXNlck5hbWUiOiJqZW56ejEyIiwiZW1haWwiOiJqZW5uaWZlcjdAZ21haWwuY29tIiwiaXNEZWxldGVkIjpmYWxzZSwiaWF0IjoxNzAyNjM0NjA4LCJleHAiOjE3MDI3MjEwMDh9.i6xU2qItgfYPNTy6sGYWJbN8dB40-SgD2qVXQfJIyFo
 
@@ -170,7 +170,16 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00
 }
 
 ###
+//edit comment
+PUT http://localhost:4700/post/editcomment/1
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00MzU4LTllZjUtYjU1NWIyMjEzNjA4IiwidXNlck5hbWUiOiJqZW56ejEyIiwiZW1haWwiOiJqZW5uaWZlcjdAZ21haWwuY29tIiwiaXNEZWxldGVkIjpmYWxzZSwiaWF0IjoxNzAyNjM0NjA4LCJleHAiOjE3MDI3MjEwMDh9.i6xU2qItgfYPNTy6sGYWJbN8dB40-SgD2qVXQfJIyFo
 
+{
+  "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5",
+  "post_id": "7e9473c0-f445-4f3c-b4bc-80c31d1b31d5",
+  "commentContent": "Updated comment content"
+}
 
 
 

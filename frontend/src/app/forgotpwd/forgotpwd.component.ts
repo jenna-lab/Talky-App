@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ForgotpasswordService } from '../services/forgotpassword.service'
+import { ForgotpwdService } from '../services/forgotpwd.service'
 
 @Component({
   selector: 'app-forgotpwd',
@@ -8,7 +8,7 @@ import { ForgotpasswordService } from '../services/forgotpassword.service'
   styleUrls: ['./forgotpwd.component.css']
 })
 export class ForgotpwdComponent {
-forgotPasswordForm!: FormGroup;
+  forgotPasswordForm!: FormGroup;
   errorMessage: string = '';
   successMessage: string = '';
 
@@ -17,7 +17,7 @@ forgotPasswordForm!: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
-    private forgotpwds: ForgotpasswordService
+    private forgotpwds: ForgotpwdService
   ) {
     this.forgotPasswordForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],

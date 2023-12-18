@@ -1,12 +1,23 @@
-
-CREATE OR ALTER PROCEDURE toggleSoftDeleteUser
-    @user_id VARCHAR(100),
-    @isDeleted BIT
+CREATE OR ALTER PROCEDURE toggleAccountStatus
+    @username VARCHAR(100)
 AS
 BEGIN
-    UPDATE Users
-    SET isDeleted = @isDeleted
-    WHERE user_id = @user_id;
-END;
-
-DROP PROCEDURE IF EXISTS toggleSoftDeleteUser;
+    DECLARE @currentStatus BIT
+ 
+    SELECT @currentStatus = isDeleted
+    FROM users
+    WHERE username = @username
+ 
+    IF @currentStatus = 0
+    BEGIN
+        UPDATE users
+        SET isDeleted = 1
+        WHERE username = @username
+    END
+    ELSE
+    BEGIN
+        UPDATE users
+        SET isDeleted = 0
+        WHERE username = @username
+    END
+END

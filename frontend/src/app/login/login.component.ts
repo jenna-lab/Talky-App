@@ -45,18 +45,11 @@ export class LoginComponent {
         this.api.checkUserDetails(data.token).then((data: any) => {
           console.log(data);
 
-          localStorage.setItem('role', data.role);
           localStorage.setItem('isLoggedIn', `${true}`);
-          localStorage.setItem('user_id', `${data.id}`);
-
-          if (data.role === 'user') {
-            localStorage.setItem('name', data.name);
-            this.router.navigate(['/user']);
-          }
-          if (data.role === 'admin') {
-            localStorage.setItem('name', data.name);
-            this.router.navigate(['/admin']);
-          }
+          localStorage.setItem('user_id', `${data.info.user_id}`);
+          this.router.navigate(['/user']);
+          
+          
         });
       } catch (error: any) {
         console.log(error);
@@ -65,7 +58,7 @@ export class LoginComponent {
   }
 
   navigateToForgotPassword = () => {
-    this.router.navigate(['/forgot-password']);
+    this.router.navigate(['/forgotpwd']);
   };
   navigateToResetPassword = () => {
     this.router.navigate(['/reset-password']);

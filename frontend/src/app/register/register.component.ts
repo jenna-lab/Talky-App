@@ -9,7 +9,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
- userData: UserRegister = {
+  userData: UserRegister = {
     email: '',
     password: '',
     userName: '',
@@ -43,7 +43,7 @@ export class RegisterComponent {
       userName: this.userData.userName,
       email: this.userData.email,
       password: this.userData.password,
-      role: 'admin',
+      role: 'user',
     };
 
     this.api.register(this.userData).then(
@@ -62,5 +62,4 @@ export class RegisterComponent {
   navigateToLogin = () => {
     this.router.navigate(['/login']);
   };
-
 }

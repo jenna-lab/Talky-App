@@ -435,3 +435,27 @@ export const deleteComment = async (req: Request, res: Response) => {
   }
 };
 
+export const getAllComments = async (req: Request, res: Response) => {
+  try {
+    const { user_id, post_id } = req.body;
+    const pool = await mssql.connect(sqlConfig);
+
+    if (pool.connected) {
+      const result = await pool.request()
+        .input('user_id', mssql.VarChar, user_id)
+        .input('post_id', mssql.VarChar, post_id)
+        .execute('getAllComments');
+
+      // Assuming getAllComments stored procedure returns comments in result.recordset
+      const comments = result.recordset;
+
+      return res.status(200).json({
+        message: 'Comments retrieved successfully',
+        comments,
+      });
+    }
+  } catch (error) {
+    console.error((error as Error).message);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};

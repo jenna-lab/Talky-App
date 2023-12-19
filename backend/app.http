@@ -1,186 +1,19 @@
+
 POST http://localhost:4700/user/register
 Content-Type: application/json
 
-# {
-#     "email":"tryuiytuuil@gmail.com",
-#     "userName":"jenz",
-#     "password":"839302018"
-# }
-
-# {
-#     "email":"jenifare7@gmail.com",
-#     "userName":"jenz12",
-#     "password":"839302018"
-# }
-
 {
-    "email":"jenz7@gmail.com",
-    "userName":"jenz32",
+    "email":"jenny@gmail.com",
+    "userName":"jenz",
     "password":"839302018"
 }
-
-# {
-#     "email":"jennifer7@gmail.com",
-#     "userName":"jenzz12",
-#     "password":"839302018"
-# }
 
 
 ###
 POST http://localhost:4700/user/login
 Content-Type: application/json
 
-# {
-#     "email":"jenifare7@gmail.com",
-#     "password":"839302018"
-# }
-
 {
-    "email":"jennifer7@gmail.com",
+    "email":"jenny@gmail.com",
     "password":"839302018"
 }
-
-# {
-#     "email":"tryuiytuuil@gmail.com",
-#     "password":"839302018"
-# }
-
-###
-//get a specific user
-GET http://localhost:4700/user/8a0e9f90-4bdc-4e47-bde1-71f31056ebe0
-Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00MzU4LTllZjUtYjU1NWIyMjEzNjA4IiwidXNlck5hbWUiOiJqZW56ejEyIiwiZW1haWwiOiJqZW5uaWZlcjdAZ21haWwuY29tIiwiaXNEZWxldGVkIjpmYWxzZSwiaWF0IjoxNzAyNjM0NjA4LCJleHAiOjE3MDI3MjEwMDh9.i6xU2qItgfYPNTy6sGYWJbN8dB40-SgD2qVXQfJIyFo
-
-### 
-GET http://localhost:4700/user/check_user_details
-Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00MzU4LTllZjUtYjU1NWIyMjEzNjA4IiwidXNlck5hbWUiOiJqZW56ejEyIiwiZW1haWwiOiJqZW5uaWZlcjdAZ21haWwuY29tIiwiaXNEZWxldGVkIjpmYWxzZSwiaWF0IjoxNzAyODg2MTkwLCJleHAiOjE3MDI5NzI1OTB9.VhurK53ynd5ReAdCAvCsnBeLmIzPgBom_nuDPIJaNmo
-
-###
-//softdeleteuser
-PUT http://localhost:4700/user/softdeleteuser/8343c418-5352-4358-9ef5-b555b2213608
-Content-Type: application/json
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00MzU4LTllZjUtYjU1NWIyMjEzNjA4IiwidXNlck5hbWUiOiJqZW56ejEyIiwiZW1haWwiOiJqZW5uaWZlcjdAZ21haWwuY29tIiwiaXNEZWxldGVkIjpmYWxzZSwiaWF0IjoxNzAyNjMyNDkxLCJleHAiOjE3MDI3MTg4OTF9.H4tQDIZnf-ec9LJrfMTn3F2n4V0zCfYuxo0YuBNjyZU
-
-{
-    "isDeleted":true,
-    "isDeleted":false
-}
-###
-//get all users
-GET http://localhost:4700/user/viewallusers
-Content-Type: application/json
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00MzU4LTllZjUtYjU1NWIyMjEzNjA4IiwidXNlck5hbWUiOiJqZW56ejEyIiwiZW1haWwiOiJqZW5uaWZlcjdAZ21haWwuY29tIiwiaXNEZWxldGVkIjpmYWxzZSwiaWF0IjoxNzAyNjMyNDkxLCJleHAiOjE3MDI3MTg4OTF9.H4tQDIZnf-ec9LJrfMTn3F2n4V0zCfYuxo0YuBNjyZU
-
-### 
-//create post
-POST http://localhost:4700/post/createpost
-Content-Type: application/json
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5MWJiOTYtNmMxMC00ZDMwLWE1MjctYjk0NWIwMzQ3ZGYyIiwidXNlck5hbWUiOiJqZW56MTIiLCJlbWFpbCI6ImplbmlmYXJlN0BnbWFpbC5jb20iLCJpc0RlbGV0ZWQiOmZhbHNlLCJpYXQiOjE3MDI2MjQxMTEsImV4cCI6MTcwMjcxMDUxMX0.FWwKl0PweDvjm_jces_8Ho7CA1Lqsd41OFboGcL9KOc
-
-{
-    "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5",
-    "imageInput":"",
-    "postContent": "Jenna told Robin he is a simp.He will never forget that.Hio ni kumuita kafukusw"
-
-}
-
-
-###
-//view one post
-POST  http://localhost:4700/post/viewSinglePost/1b35b780-389b-40a3-b228-f0953ecca4f3
-Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00MzU4LTllZjUtYjU1NWIyMjEzNjA4IiwidXNlck5hbWUiOiJqZW56ejEyIiwiZW1haWwiOiJqZW5uaWZlcjdAZ21haWwuY29tIiwiaXNEZWxldGVkIjpmYWxzZSwiaWF0IjoxNzAyNjM0NjA4LCJleHAiOjE3MDI3MjEwMDh9.i6xU2qItgfYPNTy6sGYWJbN8dB40-SgD2qVXQfJIyFo
-
-{
-    "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5"
-}
-
-###
-//get all posts  for a single user
-GET http://localhost:4700/post/fetchuserposts/16357c7d-0f81-473e-b32e-a993fa0e6ea5
-Content-Type: application/json
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5MWJiOTYtNmMxMC00ZDMwLWE1MjctYjk0NWIwMzQ3ZGYyIiwidXNlck5hbWUiOiJqZW56MTIiLCJlbWFpbCI6ImplbmlmYXJlN0BnbWFpbC5jb20iLCJpc0RlbGV0ZWQiOmZhbHNlLCJpYXQiOjE3MDI2Mjg3MDUsImV4cCI6MTcwMjcxNTEwNX0.TP7QAR6B5VEtNJkICjVIQgnzTDvFU2eUycCpvN3qS7M
-
-
-###
-//view all posts
-GET http://localhost:4700/post/viewAllPosts
-Content-Type: application/json
-
-
-###
-#edit a post
-
-PUT http://localhost:4700/post/editpost
-Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00MzU4LTllZjUtYjU1NWIyMjEzNjA4IiwidXNlck5hbWUiOiJqZW56ejEyIiwiZW1haWwiOiJqZW5uaWZlcjdAZ21haWwuY29tIiwiaXNEZWxldGVkIjpmYWxzZSwiaWF0IjoxNzAyNjM0NjA4LCJleHAiOjE3MDI3MjEwMDh9.i6xU2qItgfYPNTy6sGYWJbN8dB40-SgD2qVXQfJIyFo
-
-{
-    "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5",
-    "post_id": "1b35b780-389b-40a3-b228-f0953ecca4f3",
-    "newPostContent": "Jenna told Robin he is simping.He will never forget that.Hio ni kumuita kafukusw",
-    "newImageInput":""
-}
-
-
-###
-//delete a post
-DELETE http://localhost:4700/post/deletepost/8d6380a2-924e-4596-b75a-4f98e122a194
-Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00MzU4LTllZjUtYjU1NWIyMjEzNjA4IiwidXNlck5hbWUiOiJqZW56ejEyIiwiZW1haWwiOiJqZW5uaWZlcjdAZ21haWwuY29tIiwiaXNEZWxldGVkIjpmYWxzZSwiaWF0IjoxNzAyNjM0NjA4LCJleHAiOjE3MDI3MjEwMDh9.i6xU2qItgfYPNTy6sGYWJbN8dB40-SgD2qVXQfJIyFo
-
-{
-    "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5"
-}
-
-
-###
-#like post and unlike post
-POST http://localhost:4700/post/likeorunlikepost
-Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00MzU4LTllZjUtYjU1NWIyMjEzNjA4IiwidXNlck5hbWUiOiJqZW56ejEyIiwiZW1haWwiOiJqZW5uaWZlcjdAZ21haWwuY29tIiwiaXNEZWxldGVkIjpmYWxzZSwiaWF0IjoxNzAyNjM0NjA4LCJleHAiOjE3MDI3MjEwMDh9.i6xU2qItgfYPNTy6sGYWJbN8dB40-SgD2qVXQfJIyFo
-
-{
-    "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5",
-    "post_id": "1b35b780-389b-40a3-b228-f0953ecca4f3"
-}
-
-###
-//add comment
-POST http://localhost:4700/post/addcomment
-Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00MzU4LTllZjUtYjU1NWIyMjEzNjA4IiwidXNlck5hbWUiOiJqZW56ejEyIiwiZW1haWwiOiJqZW5uaWZlcjdAZ21haWwuY29tIiwiaXNEZWxldGVkIjpmYWxzZSwiaWF0IjoxNzAyNjM0NjA4LCJleHAiOjE3MDI3MjEwMDh9.i6xU2qItgfYPNTy6sGYWJbN8dB40-SgD2qVXQfJIyFo
-
-{
-     "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5",               
-     "commentContent": "Great post!" ,
-     "post_id":"7e9473c0-f445-4f3c-b4bc-80c31d1b31d5"
-}
-
-###
-//get all comments
-GET http://localhost:4700/post/getallcomments/7e9473c0-f445-4f3c-b4bc-80c31d1b31d5
-Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00MzU4LTllZjUtYjU1NWIyMjEzNjA4IiwidXNlck5hbWUiOiJqZW56ejEyIiwiZW1haWwiOiJqZW5uaWZlcjdAZ21haWwuY29tIiwiaXNEZWxldGVkIjpmYWxzZSwiaWF0IjoxNzAyNjM0NjA4LCJleHAiOjE3MDI3MjEwMDh9.i6xU2qItgfYPNTy6sGYWJbN8dB40-SgD2qVXQfJIyFo
-
-{
-     "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5"             
-
-}
-
-###
-//edit comment
-PUT http://localhost:4700/post/editcomment/1
-Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM0M2M0MTgtNTM1Mi00MzU4LTllZjUtYjU1NWIyMjEzNjA4IiwidXNlck5hbWUiOiJqZW56ejEyIiwiZW1haWwiOiJqZW5uaWZlcjdAZ21haWwuY29tIiwiaXNEZWxldGVkIjpmYWxzZSwiaWF0IjoxNzAyNjM0NjA4LCJleHAiOjE3MDI3MjEwMDh9.i6xU2qItgfYPNTy6sGYWJbN8dB40-SgD2qVXQfJIyFo
-
-{
-  "user_id": "16357c7d-0f81-473e-b32e-a993fa0e6ea5",
-  "post_id": "7e9473c0-f445-4f3c-b4bc-80c31d1b31d5",
-  "commentContent": "Updated comment content"
-}
-
-
-
-

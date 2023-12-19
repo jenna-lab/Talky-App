@@ -1,6 +1,10 @@
 import { Request, Response } from 'express'
 import mssql from 'mssql'
+<<<<<<< HEAD
+import {v4} from 'uuid'
+=======
 import { v4 as uid } from "uuid";
+>>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e
 import bcrypt from 'bcrypt'
 import { sqlConfig } from '../config/sqlConfig'
 import jwt from 'jsonwebtoken'
@@ -9,7 +13,10 @@ import { ExtendedUser } from '../middleware/verifyToken'
 import { loginUserSchema, registerUserSchema } from '../validators/validators'
 import { isEmpty } from 'lodash'
 import dbHelper from '../dbhelpers/dbhelper'
+<<<<<<< HEAD
+=======
 import { resetPassword } from '../utils/sendResetPwd';
+>>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e
 
  
 export const registerUser = async(req:Request, res: Response) =>{
@@ -22,9 +29,14 @@ export const registerUser = async(req:Request, res: Response) =>{
         if(error){
             return res.status(404).json({error: error.details})
         }
+<<<<<<< HEAD
+
+        let user_id = v4()
+=======
         
 
         let user_id =uid()
+>>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e
 
         const hashedPwd = await bcrypt.hash(password, 5)
          
@@ -43,6 +55,12 @@ export const registerUser = async(req:Request, res: Response) =>{
             })
         }     
     } catch (error) {  
+<<<<<<< HEAD
+        return res.json({
+            error: error
+        })
+    }
+=======
         console.log((error as Error).message)
         const message = (error as Error).message
         if(message.includes('@')){
@@ -57,12 +75,16 @@ export const registerUser = async(req:Request, res: Response) =>{
     }
 
 }
+>>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e
 }
 
 export const loginUser = async(req:Request, res: Response) =>{
     try {  
         const {email, password} = req.body
+<<<<<<< HEAD
+=======
         console.log(email, password)
+>>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e
 
         const {error} = loginUserSchema.validate(req.body)
 
@@ -112,6 +134,68 @@ export const loginUser = async(req:Request, res: Response) =>{
     }
 }
 
+<<<<<<< HEAD
+// export const getAllUsers = async(req:Request, res:Response)=>{
+//     try {
+
+//         const pool = await mssql.connect(sqlConfig)
+
+//         let employees = (await pool.request().execute('fetchAllEmployees')).recordset
+
+//         return res.status(200).json({
+//             employees: employees
+//         })
+        
+//     } catch (error) {
+//         return res.json({
+//             error: error
+//         })
+//     }
+// }
+// export const getOneUsers = async(req:Request, res:Response)=>{
+//     try {
+
+//         let id = req.params.id 
+
+//         const pool = await mssql.connect(sqlConfig)
+
+//         let employee = (await pool.request().input('employee_id',id).execute('fetchOneEmployee')).recordset
+
+//         return res.status(200).json({
+//             employee: employee
+//         })
+        
+//     } catch (error) {
+//         return res.json({
+//             error: error
+//         })
+//     }
+// }
+
+// export const userStatus = async (req: Request, res:Response)=>{
+//     try {
+        
+//         let {employee_id} = req.params
+//         let {isDeleted} = req.body
+
+//         const pool = await mssql.connect(sqlConfig)
+
+//         const result = await pool.request()
+//         .input("employee_id", employee_id) 
+//         .input("isDeleted", isDeleted)
+//         .execute("deleteEmployee")
+        
+//         console.log(result);
+
+//         return res.json({message: result})
+
+//     } catch (error) {
+//         return res.json({
+//             error: error
+//         })
+//     }
+// }
+=======
 
  
 
@@ -154,6 +238,7 @@ export const viewAllUsers = async (req: Request, res: Response) => {
 };
 
 
+>>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e
 
 export const checkUserDetails = async (req:ExtendedUser, res:Response)=>{
     
@@ -164,6 +249,9 @@ export const checkUserDetails = async (req:ExtendedUser, res:Response)=>{
         }) 
     }
     
+<<<<<<< HEAD
+}
+=======
 }
 
 export const toggleSoftDeleteUser = async (req: Request, res: Response) => {
@@ -233,3 +321,4 @@ export const forgotPassword = async (req: Request, res: Response) => {
 
 
 };
+>>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e

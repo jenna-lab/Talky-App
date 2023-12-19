@@ -6,8 +6,8 @@ import { UserComponent } from './user/user.component';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
+import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
 
 const routes: Routes = [
   {path: "", pathMatch: 'full', redirectTo: ""},
@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: "app", component:AppComponent},
   {path: "register", component:RegisterComponent},
   {path: "login", component:LoginComponent},
-  {path: "forgot-password", component:ForgotPasswordComponent},
+  {path: "forgotpwd", component:ForgotpwdComponent},
   {path: "profile", component:MyprofileComponent},
 
 

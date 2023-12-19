@@ -1,6 +1,10 @@
 import { Request, Response } from 'express'
 import mssql from 'mssql'
+<<<<<<< HEAD
 import {v4} from 'uuid'
+=======
+import { v4 as uid } from "uuid";
+>>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e
 import bcrypt from 'bcrypt'
 import { sqlConfig } from '../config/sqlConfig'
 import jwt from 'jsonwebtoken'
@@ -9,6 +13,10 @@ import { ExtendedUser } from '../middleware/verifyToken'
 import { loginUserSchema, registerUserSchema } from '../validators/validators'
 import { isEmpty } from 'lodash'
 import dbHelper from '../dbhelpers/dbhelper'
+<<<<<<< HEAD
+=======
+import { resetPassword } from '../utils/sendResetPwd';
+>>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e
 
  
 export const registerUser = async(req:Request, res: Response) =>{
@@ -21,8 +29,14 @@ export const registerUser = async(req:Request, res: Response) =>{
         if(error){
             return res.status(404).json({error: error.details})
         }
+<<<<<<< HEAD
 
         let user_id = v4()
+=======
+        
+
+        let user_id =uid()
+>>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e
 
         const hashedPwd = await bcrypt.hash(password, 5)
          
@@ -41,15 +55,36 @@ export const registerUser = async(req:Request, res: Response) =>{
             })
         }     
     } catch (error) {  
+<<<<<<< HEAD
         return res.json({
             error: error
         })
     }
+=======
+        console.log((error as Error).message)
+        const message = (error as Error).message
+        if(message.includes('@')){
+        return res.json({
+            error: "Email's already taken"
+        })
+    }
+    else{
+        return res.json({
+            error: "Username's already taken"
+        })
+    }
+
+}
+>>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e
 }
 
 export const loginUser = async(req:Request, res: Response) =>{
     try {  
         const {email, password} = req.body
+<<<<<<< HEAD
+=======
+        console.log(email, password)
+>>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e
 
         const {error} = loginUserSchema.validate(req.body)
 
@@ -99,6 +134,7 @@ export const loginUser = async(req:Request, res: Response) =>{
     }
 }
 
+<<<<<<< HEAD
 // export const getAllUsers = async(req:Request, res:Response)=>{
 //     try {
 
@@ -159,6 +195,50 @@ export const loginUser = async(req:Request, res: Response) =>{
 //         })
 //     }
 // }
+=======
+
+ 
+
+export const getOneUser = async(req:Request, res:Response)=>{
+    try {
+
+        let id = req.params.id 
+
+        const pool = await mssql.connect(sqlConfig)
+
+        let user = (await pool.request().input('user_id',id).execute('getOneUser')).recordset
+
+        return res.status(200).json({
+            user: user
+        })
+        
+    } catch (error) {
+        return res.json({
+            error: error
+        })
+    }
+}
+
+export const viewAllUsers = async (req: Request, res: Response) => {
+  try {
+    const pool = await mssql.connect(sqlConfig);
+
+    if (pool.connected) {
+      const result = await pool.request().execute('viewAllUsers');
+
+      return res.status(200).json({
+        message: 'Successfully retrieved all users',
+        users: result.recordset,
+      });
+    }
+  } catch (error) {
+    console.error((error as Error).message);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+>>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e
 
 export const checkUserDetails = async (req:ExtendedUser, res:Response)=>{
     
@@ -169,4 +249,76 @@ export const checkUserDetails = async (req:ExtendedUser, res:Response)=>{
         }) 
     }
     
+<<<<<<< HEAD
 }
+=======
+}
+
+export const toggleSoftDeleteUser = async (req: Request, res: Response) => {
+  try {
+    let { user_id } = req.params;
+    let { isDeleted } = req.body;
+
+    const pool = await mssql.connect(sqlConfig);
+
+    if (pool.connected) {
+      const result = await pool.request()
+        .input('user_id', mssql.VarChar, user_id)
+        .input('isDeleted', mssql.Bit, isDeleted)
+        .execute('toggleSoftDeleteUser');
+
+      if (result.rowsAffected[0] === 0) {
+        return res.status(404).json({
+          message: 'User not found or soft delete status not updated',
+        });
+      } else {
+        return res.status(200).json({
+          message: `Soft delete status ${isDeleted ? 'enabled' : 'disabled'} successfully`,
+          userId: user_id,
+        });
+      }
+    }
+  } catch (error) {
+    console.error((error as Error).message);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+export const forgotPassword = async (req: Request, res: Response) => {
+ 
+    const { email } = req.body;
+    const new_password = uid();
+    console.log(req.body);
+ const pool = await mssql.connect(sqlConfig);
+     const user =    await pool
+        .request()
+      .input("email", mssql.VarChar(50), email)
+        .execute("getUser");
+
+        const rows = user.rowsAffected[0];
+        if(rows == 0){
+              return res.json({ error: "User Not Found" });
+        }
+        else{
+              const hashedPwd = await bcrypt.hash(new_password, 10);
+              
+              await pool
+                .request()
+                .input("email", mssql.VarChar(50), email)
+                .input("newPassword", mssql.VarChar(255), hashedPwd)
+                .execute("updatePassword");
+         resetPassword(email, new_password);
+
+         console.log(new_password);
+         
+         
+          return res.json({ message: "New Password has been sent to your email" });
+          
+          return res.json({ error: "User Not Found" });
+        }
+        
+
+
+};
+>>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e

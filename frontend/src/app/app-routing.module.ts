@@ -20,6 +20,7 @@ const routes: Routes = [
   {path: "profile", component:MyprofileComponent},
 
 
+
     {path: "**", component:NotFoundComponent}
 
 ];

@@ -11,6 +11,8 @@ export class MyprofileComponent {
   viewposts=true
   viewfollowers=false
   viewfollowing=false
+    
+
  
   ViewPosts(){
     this.viewposts = true
@@ -28,5 +30,10 @@ export class MyprofileComponent {
     this.viewfollowers=false
     this.viewfollowing = true
   }
+
+  // ViewProfile() {
+  //  this.viewProfile = true
+  //   this.viewTimeline = false
+  // }
 
 }

@@ -1,6 +1,6 @@
 /// <reference types = "cypress" />
  
-describe("Reisters a user", () => {
+describe("Registers a user", () => {
     it ("passes", () => {
         cy.visit('http://localhost:4200/register')
 

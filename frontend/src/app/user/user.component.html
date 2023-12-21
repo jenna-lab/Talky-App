@@ -73,41 +73,6 @@
                                 </svg>
                             </button>
 
-<<<<<<< HEAD
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="feather feather-edit-2 icon-sm mr-2">
-                                            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-                                        </svg> <span class="">Edit</span></a>
-                                </li>
-                                <li><a class="dropdown-item d-flex align-items-center" href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="feather feather-git-branch icon-sm mr-2">
-                                            <line x1="6" y1="3" x2="6" y2="15"></line>
-                                            <circle cx="18" cy="6" r="3"></circle>
-                                            <circle cx="6" cy="18" r="3"></circle>
-                                            <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                        </svg> <span class="">Update</span></a></li>
-                                <li>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="feather feather-eye icon-sm mr-2">
-                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                            <circle cx="12" cy="12" r="3"></circle>
-                                        </svg> <span class="">View all</span></a>
-
-                                </li>
-
-                                 
-                            </ul>
-=======
->>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e
                         </div>
                         <p contentEditable="true">Hi! I'm Jassa.</p>
                         <div class="mt-3">
@@ -126,13 +91,7 @@
                             <label class="tx-11 font-weight-bold mb-0 text-uppercase">Website:</label>
                             <p class="text-muted" contentEditable="true">www.therichpost.com</p>
                         </div>
-<<<<<<< HEAD
-                        <div class="mt-3">
-                            <button class="btn btn-danger" routerLink="/login">Logout</button>
-                        </div>
-=======
                         <button class="btn btn-danger" routerLink="/login">Logout</button>
->>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e
 
                     </div>
                 </div>
@@ -150,52 +109,46 @@
                 <!-- Create Post Section -->
                 <div class="row mb-3">
                     <div class="col-md-12">
-
-                        
                         <div class="card rounded">
                             <div class="card-body">
 
-    
+
                                 <!-- Post Form -->
-                            <form [formGroup]="postform" (ngSubmit)="submitPost()">
-                                <!-- Text Input for Post Content with Required Validation -->
-                                <div class="form-group">
-                                    <label for="postContent">Create New Post</label>
-                                    <textarea formControlName="postContent" class="form-control" id="postContent" name="postContent" rows="3" placeholder="What's on your mind?"
-                                        ></textarea>
-                                    <!-- <div *ngIf="postForm.controls['postContent'].invalid && (postForm.controls['postContent'].dirty || postForm.controls['postContent'].touched)"
-                                        class="text-danger">Post content is required.
-                                    </div> -->
-                                </div>
-                            
-                                <div class="form-group">
-                                    <label for="imageInput">Upload Image</label>
-                                    <!-- <input type="file" class="form-control-file" id="imageInput" name="imageInput" accept="image/*"
-                                        [(ngModel)]="imageInput"> -->
+                                <form [formGroup]="postform" (ngSubmit)="submitPost()">
+                                    <!-- Text Input for Post Content with Required Validation -->
+                                    <div class="form-group">
+                                        <label for="postContent">Create New Post</label>
+                                        <textarea formControlName="postContent" class="form-control" id="postContent"
+                                            name="postContent" rows="3" placeholder="What's on your mind?"></textarea>
+                                        
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="imageInput">Upload Image</label>
+                                       
 
                                         <ngx-dropzone (change)="onSelect($event)">
                                             <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
-                                            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                                            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true"
+                                                (removed)="onRemove(f)">
                                                 <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                                             </ngx-dropzone-preview>
                                         </ngx-dropzone>
 
-                                </div>
-                            
-                                <!-- Post and Cancel Buttons -->
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <button type="submit" class="btn btn-primary">Post</button>
-                                </div>
-                            </form>
+                                    </div>
+
+                                    <!-- Post and Cancel Buttons -->
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <button type="submit" class="btn btn-primary">Post</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-
-                        
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12 grid-margin">
+                    <div *ngFor="let post of posts" class="col-md-12 grid-margin">
                         <div class="card rounded">
                             <div class="card-header">
                                 <div class="d-flex align-items-center justify-content-between">
@@ -203,12 +156,14 @@
                                         <img class="img-xs rounded-circle"
                                             src="https://therichpost.com/wp-content/uploads/2021/03/avatar6.png" alt="">
                                         <div class="ml-2">
-                                            <p>Jassa</p>
-                                            <p class="tx-11 text-muted">1 min ago</p>
+                                            <p>{{post.userName}}</p>
+                                            <p class="tx-11 text-muted">{{getTimeFormNow(post.timeposted)}}</p>
                                         </div>
                                     </div>
                                     <div class="dropdown">
+                                        <!-- <button data-bs-toggle="dropdown"> -->
                                         <button data-bs-toggle="dropdown">
+
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"
@@ -221,7 +176,7 @@
                                         <ul class="dropdown-menu">
                                             <li>
 
-                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                <a class="dropdown-item d-flex align-items-center" >
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -232,7 +187,7 @@
                                                         <line x1="15" y1="9" x2="15.01" y2="9"></line>
                                                     </svg> <span class="">Unfollow</span></a>
                                             </li>
-                                            <li><a class="dropdown-item d-flex align-items-center" href="#">
+                                            <li><a class="dropdown-item d-flex align-items-center" >
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -241,32 +196,28 @@
                                                         <path d="M4 20h7a4 4 0 0 0 4-4V4"></path>
                                                     </svg> <span class="">Go to post</span></a></li>
                                             <li>
-                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <li><a class="dropdown-item d-flex align-items-center">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-share-2 icon-sm mr-2">
-                                                        <circle cx="18" cy="5" r="3"></circle>
-                                                        <circle cx="6" cy="12" r="3"></circle>
-                                                        <circle cx="18" cy="19" r="3"></circle>
-                                                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                                                    </svg> <span class="">Share</span></a>
+                                                        class="feather feather-corner-right-up icon-sm mr-2">
+                                                        <polyline points="10 9 15 4 20 9"></polyline>
+                                                        <path d="M4 20h7a4 4 0 0 0 4-4V4"></path>
+                                                    </svg> <span class="" (click)="handleDeletePost(post.post_id, post.user_id)" >delete post</span></a></li>
+                                            <li>
 
                                             </li>
-                                         
+
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <p class="mb-3 tx-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Accusamus minima delectus nemo unde quae recusandae assumenda.</p>
-                                <img class="img-fluid"
-                                    src="https://therichpost.com/wp-content/uploads/2021/03/avatar6.png" alt="">
+                                <p class="mb-3 tx-14">{{post.postContent}}</p>
+                                <img class="img-fluid" src="{{post.imageInput}}" alt="">
                             </div>
                             <div class="card-footer">
-                              
+
                                 <!-- Like, Comment, and Share Icons -->
 
                                 <div class="d-flex post-actions">
@@ -305,9 +256,9 @@
                                 </div>
 
                                 <!-- Sample Comments Section -->
-                                <div class="mt-3">
+                                <div *ngFor="let comment of post.comments" class="mt-3">
                                     <!-- Comment 1 -->
-        <div class="ml-auto d-flex align-items-center">
+                                    <div class="d-flex align-items-center mb-2">
                                         <img src="https://placekitten.com/40/40" alt="User Avatar"
                                             class="img-xs rounded-circle">
                                         <div class="ml-2">
@@ -317,28 +268,6 @@
                                         <div class="ml-auto">
                                             <!-- Icons for Edit, Like, and Delete -->
                                             <a href="javascript:;" class="text-muted mr-2">
-<<<<<<< HEAD
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil"
-                                                    viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M10.742 0a1.754 1.754 0 0 1 1.48.852l1.778 3.815-3.5 3.5-3.815-1.778A1.754 1.754 0 0 1 0 5.258V1.754A1.754 1.754 0 0 1 1.754 0h8.488zm-1.778 1.886a.75.75 0 0 0-1.061 0L1.646 10.862a1.783 1.783 0 0 0-.469 1.365l-.447 4.477a.75.75 0 0 0 1.365.47l4.477-.447a1.783 1.783 0 0 0 1.365-.469l8.976-8.976a.75.75 0 0 0 0-1.061l-1.5-1.5zM13.854 2l1.5 1.5L12.354 5.5 10.854 4l2.5-2.5zM0 14.25a.75.75 0 0 0 .75.75h4.5a.75.75 0 0 0 0-1.5H.75a.75.75 0 0 0-.75.75z" />
-                                                </svg>
-                                            </a>
-                                            <a href="javascript:;" class="text-muted mr-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart"
-                                                    viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M7.643 14.851 8 14.5l.357.351a6.5 6.5 0 0 0 9.192-9.192L8 1.308 1.451 7.85a6.5 6.5 0 0 0 9.192 9.192zM8 15.25a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-                                                </svg>
-                                            </a>
-                                            <a href="javascript:;" class="text-muted">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
-                                                    viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M1.5 5.5a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2-.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7zm3 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm7.5 1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1zM12 1a2 2 0 0 1 2 2h-1a1 1 0 0 0-2 0H4a2 2 0 0 1 2-2h1a1 1 0 0 0 2 0h4z" />
-                                                </svg>
-                                            </a>                     </div>
-=======
                                                 <i class="fas fa-pen-to-square"></i>
                                             </a>
                                             <a href="javascript:;" class="text-muted mr-2">
@@ -349,17 +278,20 @@
                                             </a>
                                         </div>
 
->>>>>>> 514f8a7c61d4b05843e91c36d3f14e19db0d452e
                                     </div>
-                                    <p class="mb-0">This is a sample comment. Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit.</p>
+                                    <p class="mb-0">kiupotcnf</p>
                                 </div>
                                 <!-- Comment Form -->
 
-                                <form class="form-inline w-100" action="">
+                                <form class="form-inline w-100" (ngSubmit)="addComment(post.post_id)">
                                     <div class="input-group w-100">
-                                        <input type="text" class="form-control" placeholder="Write a comment here..."
-                                            name="comment" id="commentInput">
+                                        <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        placeholder="Write a comment here..."
+                                            name="comment" 
+                                            [(ngModel)]="comment"
+                                            id="commentInput">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="submit">Post</button>
                                         </div>
@@ -370,87 +302,13 @@
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
             <!-- middle wrapper end -->
             <!-- right wrapper start -->
             <div class="d-none d-xl-block col-xl-3 right-wrapper">
                 <div class="row">
-                    <div class="col-md-12 grid-margin">
-                        <div class="card rounded">
-                            <div class="card-body">
-                                <h6 class="card-title">latest photos</h6>
-                                <div class="latest-photos">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <figure>
-                                                <img class="img-fluid"
-                                                    src="https://therichpost.com/wp-content/uploads/2021/03/avatar1.png"
-                                                    alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <figure>
-                                                <img class="img-fluid"
-                                                    src="https://therichpost.com/wp-content/uploads/2021/03/avatar2.png"
-                                                    alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <figure>
-                                                <img class="img-fluid"
-                                                    src="https://therichpost.com/wp-content/uploads/2021/03/avatar3.png"
-                                                    alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <figure>
-                                                <img class="img-fluid"
-                                                    src="https://therichpost.com/wp-content/uploads/2021/03/avatar4.png"
-                                                    alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <figure>
-                                                <img class="img-fluid"
-                                                    src="https://therichpost.com/wp-content/uploads/2021/03/avatar5.png"
-                                                    alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <figure>
-                                                <img class="img-fluid"
-                                                    src="https://therichpost.com/wp-content/uploads/2021/03/avatar6.png"
-                                                    alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <figure class="mb-0">
-                                                <img class="img-fluid"
-                                                    src="https://therichpost.com/wp-content/uploads/2021/03/avatar7.png"
-                                                    alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <figure class="mb-0">
-                                                <img class="img-fluid"
-                                                    src="https://therichpost.com/wp-content/uploads/2021/03/avatar8.png"
-                                                    alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <figure class="mb-0">
-                                                <img class="img-fluid"
-                                                    src="https://therichpost.com/wp-content/uploads/2021/03/avatar9.png"
-                                                    alt="">
-                                            </figure>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-md-12 grid-margin">
                         <div class="card rounded">
                             <div class="card-body">

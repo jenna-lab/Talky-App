@@ -3,17 +3,17 @@
         <div class="bg-gray-100 p-5 flex rounded-2xl shadow-lg max-w-3xl">
             <div class="md:w-1/2 px-5">
                 <h2 class="text-2xl font-bold text-[#002D74]">Login</h2>
-                <form class="" (ngSubmit)="onSubmit()">
+                <form data-cy="login-form" class="" (ngSubmit)="onSubmit()">
                     <div>
                         <label class="block text-gray-700">Email Address</label>
-                        <input type="email" name="email" placeholder="Enter Email Address " [(ngModel)]="userData.email"
+                        <input data-cy="email" type="email" name="email" placeholder="Enter Email Address " [(ngModel)]="userData.email"
                             class="w-full px-4 py-2 rounded-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none"
                             autofocus autocomplete required>
                     </div>
 
                     <div class="mt-4">
                         <label class="block text-gray-700">Password</label>
-                        <input type="password" name="password" [(ngModel)]="userData.password"
+                        <input data-cy="password" type="password" name="password" [(ngModel)]="userData.password"
                             placeholder="Enter Password" minlength="6" class="w-full px-2 py-2 rounded-lg bg-gray-200  border focus:border-blue-500
                   focus:bg-white focus:outline-none" required>
                     </div>
@@ -24,7 +24,7 @@
                             Password?</a>
                     </div>
 
-                    <button type="submit" class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg
+                    <button data-cy="submit-button" type="submit" class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg
                 px-4 py-2 mt-2">Log In</button>
                 </form>
 

@@ -5,7 +5,7 @@ import { add } from "lodash";
 
 const post_router = Router()
 
-post_router.post('/createpost', verifyToken,createPost);
+post_router.post('/createpost',createPost);
 post_router.put('/editpost',verifyToken,editPost);
 post_router.post('/viewSinglePost/:post_id',verifyToken,viewSinglePost);
 post_router.delete('/deletepost/:post_id',verifyToken,deletePost);
@@ -13,7 +13,7 @@ post_router.post('/likeorunlikepost',verifyToken,likeOrUnlikePost);
 post_router.get('/fetchuserposts/:user_id',verifyToken,fetchUserPosts);
 post_router.get('/getSingleUserPosts/:id',getSingleUserPosts);
 post_router.get('/viewallposts',viewAllPosts);
-post_router.post('/addComment',verifyToken,addComment);
+post_router.post('/addComment/:post_id',verifyToken,addComment);
 post_router.put('/editComment/comment_id',verifyToken,editComment);
 post_router.get('/getallComments/:post_id',verifyToken,getAllComments);
 

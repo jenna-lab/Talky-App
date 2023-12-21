@@ -1,26 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { UploadimageService } from '../services/uploadimage.service';
-
+import { PostService } from '../services/post.service';
+import * as moment from 'moment';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent {
+export class UserComponent  {
  postContent: string = '';
   imageInput: any; 
   form!: FormGroup;
   postform!: FormGroup;
   user_id : string = localStorage.getItem('user_id') || '';
-
-    constructor(private upload:UploadimageService,private formBuilder: FormBuilder) {
+  posts:any[] = []
+  comment:string = ''
+  
+    constructor(private upload:UploadimageService,private formBuilder: FormBuilder,private postService: PostService) {
 
       this.postform = this.formBuilder.group({
       postContent: '',
     });
 
+  
+
+    this.getAllPosts()
      }
+
+      async addComment(post_id: string) {
+      console.log(this.comment);
+      const response = await this.postService.addComment(post_id, {
+        commentContent: this.comment,
+        user_id: this.user_id,
+      });
+
+      console.log(response);
+      
+    }
+     
+      getTimeFormNow(timePosted:any) {
+      return moment(timePosted).fromNow()
+     }
+    
+  
   files: File[] = [];
 
 onSelect(event:any) {
@@ -34,22 +57,29 @@ onRemove(event:any) {
 }
 
 
-  // submitPost(form: NgForm): void {
-  //   if (form.valid) {
+  getAllPosts(){
+            this.postService.allPosts().subscribe(
+          (response) => {
+            console.log(response);
+            this.posts = response.posts;
 
-
-  //     console.log('Post submitted:', this.postContent, this.imageInput);
-  //   }
-  // }
+            console.log(this.posts);
+            
+  },
+          (error) => {
+            // Handle error
+           
+            console.error('Error submitting form:', error);
+          }
+            )
+}
 
   submitPost() {
-    // Your logic to share the post
     console.log("sadasdas ", this.postform.value);
   
     if (this.postform.valid) {
       const imageUrls: string[] = [];
     if(this.files.length > 0 ){
-   // Upload all images
    for (let index = 0; index < this.files.length; index++) {
     const data = new FormData();
     const file_data = this.files[index];
@@ -60,58 +90,37 @@ onRemove(event:any) {
     this.upload.uploadImage(data).subscribe((res) => {
       console.log(res.secure_url);
       imageUrls.push(res.secure_url);
-
-      // If all images are uploaded, proceed to createPost
-      if (imageUrls.length === this.files.length) {
-        // Set the array of image URLs in the form
-        this.form.value.postImage = imageUrls ;
+        console.log(imageUrls.length,this.files.length);
+        
+   
+        
+        this.postform.value.imageInput = imageUrls[0] ;
+        console.log("i am good ",this.user_id);
 
         // Create the post
-        let details = this.form.value;
-        details.created_by_user_id = this.user_id;
+        let details = this.postform.value;
+        details.user_id = this.user_id;
+        console.log(details);
+        
 
-        // this.postService.createPost(details).subscribe(
-        //   (response) => {
-        //     console.log(response);
-        //     this.toastr.success('Form submitted successfully!', 'Success');
+        this.postService.createPost(details).subscribe(
+          (response) => {
+            console.log(response);
+            this.getAllPosts()
+            // Clear the form or take other actions as needed
 
-        //     // Clear the form or take other actions as needed
-        //     this.postForm.reset();
-        //     this.postFiles = []; // Clear the array of uploaded files
-
-        //   },
-        //   (error) => {
-        //     // Handle error
-        //     this.toastr.error(`${error}`, 'Error');
-        //     console.error('Error submitting form:', error);
-        //   }
-        // );
-      }
+          },
+          (error) => {
+            // Handle error
+           
+            console.error('Error submitting form:', error);
+          }
+        );
+      // }
     });
   }
     }
-    // else{
-
-    //           let details = this.form.value;
-    //           details.created_by_user_id = this.user_id;
-    //    this.form.value.postImage = [] ;
-    //           // this.postService.createPost(details).subscribe(
-    //           //   (response) => {
-    //           //     console.log(response);
-    //           //     this.toastr.success('Form submitted successfully!', 'Success');
-      
-    //           //     // Clear the form or take other actions as needed
-    //           //     this.postForm.reset();
-    //           //     this.postFiles = []; // Clear the array of uploaded files
-      
-    //           //   },
-    //           //   (error) => {
-    //           //     // Handle error
-    //           //     this.toastr.error(`${error}`, 'Error');
-    //           //     console.error('Error submitting form:', error);
-    //           //   }
-    //           // );
-    // }
+  
    
     }
     
@@ -121,11 +130,29 @@ onRemove(event:any) {
       console.log('Form is invalid. Please check the fields.',this.form.value);
     }
 
-    
 
   }
 
+  handleDeletePost(post_id : string, user_id: string) {
+    const currentuserID = localStorage.getItem('user_id');
+    console.log(post_id);
+    console.log(user_id);
+    console.log(currentuserID);
+    
+    if(currentuserID === user_id){
+      console.log("sadasd");
+    this.postService.deletePost(post_id).subscribe(
+      (response) => {
+        console.log(response);
+        this.getAllPosts()
+       
+  },
+  (error) => {
 
+    console.error('Error submitting form:', error);
+  }
+    )}
+}
   
     onImageChange(event: any) {
     const selectedFile = event.target.files[0];

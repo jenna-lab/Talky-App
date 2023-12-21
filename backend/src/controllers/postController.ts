@@ -135,29 +135,33 @@ export const editPost = async (req: Request, res: Response) => {
 
 export const deletePost = async (req: Request, res: Response) => {
   try {
+    console.log(req.params);
+    
     let { user_id } = req.body;
     let { post_id } = req.params;
-
+ 
     const pool = await mssql.connect(sqlConfig);
 
     if (pool.connected) {
-      // Delete related likes from PostLikes table
       const deleteLikesResult = await pool.request()
         .input('post_id', mssql.VarChar, post_id)
         .execute('deletePostLikes');
 
-      // Check if likes are successfully deleted before proceeding with post deletion
-      if (deleteLikesResult.rowsAffected[0] === 0) {
-        return res.status(404).json({
-          message: 'Likes not found or not deleted',
-        });
-      }
+
+      // if (deleteLikesResult.rowsAffected[0] === 0) {
+      //   return res.status(404).json({
+      //     message: 'Likes not found or not deleted',
+      //   });
+      // }
 
       // Delete the actual post
       const deletePostResult = await pool.request()
         .input('user_id', mssql.VarChar, user_id)
         .input('post_id', mssql.VarChar, post_id)
         .execute('deletePost');
+
+        console.log(deletePostResult);
+        
 
       // Check if the post is successfully deleted
       if (deletePostResult.rowsAffected[0] === 0) {
@@ -180,12 +184,20 @@ export const deletePost = async (req: Request, res: Response) => {
 
 export const fetchAllPosts = async (req: Request, res: Response) => {
   try {
-        let { user_id } = req.body;
+    let { user_id } = req.body;
 
     const pool = await mssql.connect(sqlConfig);
 
     if (pool.connected) {
       const result = await pool.request().execute('fetchAllPosts');
+      console.log(result);
+      
+      // Parse the comments field from string to array of objects
+      for (let i = 0; i < result.recordset.length; i++) {
+        console.log(result.recordset[i]);
+
+        
+      }
 
       return res.status(200).json({
         message: 'Successfully retrieved all posts',
@@ -323,8 +335,8 @@ export const fetchUserPosts = async (req: Request, res: Response) => {
 
 export const addComment = async (req: Request, res: Response) => {
   try {
-    
-    let { user_id, post_id, commentContent } = req.body;
+    let {post_id} = req.params
+    let { user_id,  commentContent } = req.body;
     
     // Assuming you want to set the comment time as the current server time
     const commentTime = new Date();
